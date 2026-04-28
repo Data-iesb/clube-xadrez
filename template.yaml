@@ -10,6 +10,7 @@ Globals:
     Environment:
       Variables:
         TABLE_NAME: clube-xadrez-table
+        TOPIC_ARN: !Ref ClubeXadrezTopic
 
 Resources:
   ClubeXadrezTable:
@@ -27,6 +28,11 @@ Resources:
           KeyType: HASH
         - AttributeName: SK
           KeyType: RANGE
+
+  ClubeXadrezTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: clube-xadrez-topic
 
   ClubeXadrezApi:
     Type: AWS::Serverless::Api
@@ -46,6 +52,8 @@ Resources:
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref ClubeXadrezTable
+        - SNSPublishMessagePolicy:
+            TopicArn: !Ref ClubeXadrezTopic
       Events:
         ProxyAll:
           Type: Api
