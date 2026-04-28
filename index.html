@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clube de Xadrez</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; background: #1a1a2e; color: #eee; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .container { text-align: center; max-width: 420px; padding: 2rem; }
+    h1 { font-size: 2rem; margin-bottom: .5rem; }
+    h1 span { font-size: 2.5rem; }
+    p { color: #aaa; margin-bottom: 2rem; }
+    form { display: flex; flex-direction: column; gap: .75rem; }
+    input { padding: .75rem; border: 1px solid #333; border-radius: 8px; background: #16213e; color: #eee; font-size: 1rem; }
+    input::placeholder { color: #666; }
+    button { padding: .75rem; border: none; border-radius: 8px; background: #e94560; color: #fff; font-size: 1rem; cursor: pointer; }
+    button:hover { background: #c73650; }
+    .msg { margin-top: 1rem; font-size: .9rem; }
+    .msg.ok { color: #4ecca3; }
+    .msg.err { color: #e94560; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1><span>♟</span> Clube de Xadrez</h1>
+    <p>Inscreva-se para receber novidades e participar dos torneios!</p>
+    <form id="form">
+      <input type="text" name="name" placeholder="Seu nome" required>
+      <input type="email" name="email" placeholder="Seu e-mail" required>
+      <button type="submit">Inscrever-se</button>
+    </form>
+    <div id="msg" class="msg"></div>
+  </div>
+  <script>
+    const API_URL = "API_URL_PLACEHOLDER";
+    document.getElementById("form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const msg = document.getElementById("msg");
+      const data = Object.fromEntries(new FormData(e.target));
+      try {
+        const res = await fetch(API_URL + "/subscribe", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+        if (res.ok) {
+          msg.textContent = "Inscrição realizada! Confirme seu e-mail.";
+          msg.className = "msg ok";
+          e.target.reset();
+        } else throw new Error();
+      } catch {
+        msg.textContent = "Erro ao inscrever. Tente novamente.";
+        msg.className = "msg err";
+      }
+    });
+  </script>
+</body>
+</html>
