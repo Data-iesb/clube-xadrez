@@ -20,3 +20,5 @@ jobs:
           aws-region: us-east-1
 
       - run: aws s3 sync . s3://xadrez.dataiesb.com --delete --exclude ".git/*" --exclude ".github/*"
+
+      - run: aws cloudfront create-invalidation --distribution-id ET0N86I6ZEAJE --paths "/*"
