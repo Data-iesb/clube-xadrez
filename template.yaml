@@ -53,7 +53,7 @@ Resources:
         - DynamoDBCrudPolicy:
             TableName: !Ref ClubeXadrezTable
         - SNSPublishMessagePolicy:
-            TopicArn: !Ref ClubeXadrezTopic
+            TopicName: !GetAtt ClubeXadrezTopic.TopicName
       Events:
         ProxyAll:
           Type: Api
