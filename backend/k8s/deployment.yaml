@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clube-xadrez-backend
+  namespace: clube-xadrez
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: clube-xadrez-backend
+  template:
+    metadata:
+      labels:
+        app: clube-xadrez-backend
+    spec:
+      containers:
+        - name: app
+          image: 248189947068.dkr.ecr.us-east-1.amazonaws.com/clube-xadrez-backend:latest
+          ports:
+            - containerPort: 8000
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10

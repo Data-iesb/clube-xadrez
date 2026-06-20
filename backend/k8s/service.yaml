@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: clube-xadrez-backend
+  namespace: clube-xadrez
+spec:
+  selector:
+    app: clube-xadrez-backend
+  ports:
+    - port: 80
+      targetPort: 8000
+  type: ClusterIP
