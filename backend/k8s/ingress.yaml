@@ -5,14 +5,15 @@ metadata:
   namespace: api-students
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
   ingressClassName: nginx
   rules:
   - host: api.dataiesb.com
     http:
       paths:
-      - path: /xadrez
-        pathType: Prefix
+      - path: /xadrez/?(.*)
+        pathType: ImplementationSpecific
         backend:
           service:
             name: clube-xadrez-backend
