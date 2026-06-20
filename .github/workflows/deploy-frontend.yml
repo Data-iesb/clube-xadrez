@@ -2,7 +2,7 @@ name: Deploy Frontend
 
 on:
   push:
-    branches: [frontend]
+    branches: [main]
 
 permissions:
   id-token: write
