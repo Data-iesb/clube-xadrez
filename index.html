@@ -144,6 +144,11 @@
   </div>
 </section>
 
+<section style="text-align:center">
+  <button onclick="fetch('https://api.dataiesb.com/xadrez/').then(r=>r.json()).then(d=>document.getElementById('api-resp').textContent=d.message).catch(()=>document.getElementById('api-resp').textContent='Erro ao conectar')">Testar API</button>
+  <p id="api-resp" class="msg" style="margin-top:1rem"></p>
+</section>
+
 <footer>© 2026 Clube de Xadrez — IESB. Todos os direitos reservados.</footer>
 
 <script>
