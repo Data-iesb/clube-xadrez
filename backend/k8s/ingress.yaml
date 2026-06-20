@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: clube-xadrez-ingress
-  namespace: clube-xadrez
+  namespace: api-students
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:

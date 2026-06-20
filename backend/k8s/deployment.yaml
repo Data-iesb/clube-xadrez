@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: clube-xadrez-backend
-  namespace: clube-xadrez
+  namespace: api-students
 spec:
   replicas: 2
   selector:

@@ -35,5 +35,5 @@ jobs:
       - name: Deploy to EKS
         run: |
           aws eks update-kubeconfig --name $EKS_CLUSTER --region $AWS_REGION
-          kubectl set image deployment/clube-xadrez-backend app=$ECR_REPO:${{ github.sha }} -n clube-xadrez || \
-            kubectl apply -f backend/k8s/ -n clube-xadrez
+          kubectl set image deployment/clube-xadrez-backend app=$ECR_REPO:${{ github.sha }} -n api-students || \
+            kubectl apply -f backend/k8s/ -n api-students
